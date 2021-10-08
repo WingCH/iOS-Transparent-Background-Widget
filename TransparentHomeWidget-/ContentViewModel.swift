@@ -14,13 +14,13 @@ class ContentViewModel: ObservableObject {
     @Published var isShowPhotoLibrary = false
     
     // Save the image to AppStorage (UserDefaults), so that it can be used in widgets
-    @AppStorage("widgetBg") var widgetBg: Data?
+    @AppStorage("bg") var bg: Data?
 
     init(){}
     
     func onSelectImage(image: UIImage){
         if let data = image.pngData() {
-            widgetBg = data
+            bg = data
         }
     }
 }
