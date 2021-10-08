@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            Image(uiImage: self.viewModel.image ?? UIImage())
+            Image(uiImage: (self.viewModel.widgetBg == nil ? UIImage() : UIImage(data: self.viewModel.widgetBg!))!)
                 .resizable()
                 .scaledToFill()
                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -35,9 +35,9 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: self.$viewModel.isShowPhotoLibrary) {
-            ImagePicker(selectedImage: self.$viewModel.image, sourceType: .photoLibrary)
+            ImagePicker(selectedImage: viewModel.onSelectImage, sourceType: .photoLibrary)
         }
-        .statusBar(hidden: self.viewModel.image == nil ? false : true)
+        .statusBar(hidden: self.viewModel.widgetBg == nil ? false : true)
     }
 }
 

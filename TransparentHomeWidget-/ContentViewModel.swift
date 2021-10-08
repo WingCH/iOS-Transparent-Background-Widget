@@ -12,9 +12,15 @@ import SwiftUI
 class ContentViewModel: ObservableObject {
     
     @Published var isShowPhotoLibrary = false
-    @Published var image: UIImage?
     
-    init(){
-        
+    // Save the image to AppStorage (UserDefaults), so that it can be used in widgets
+    @AppStorage("widgetBg") var widgetBg: Data?
+
+    init(){}
+    
+    func onSelectImage(image: UIImage){
+        if let data = image.pngData() {
+            widgetBg = data
+        }
     }
 }
