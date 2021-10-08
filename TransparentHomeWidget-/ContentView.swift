@@ -11,12 +11,13 @@ struct ContentView: View {
     @StateObject private var viewModel: ContentViewModel = ContentViewModel()
     
     var body: some View {
-        VStack {
-            Image(uiImage: self.viewModel.image)
+        ZStack(alignment: .bottom) {
+            Image(uiImage: self.viewModel.image ?? UIImage())
                 .resizable()
                 .scaledToFill()
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
+            
             Button(action: {
                 self.viewModel.isShowPhotoLibrary = true
             }) {
@@ -30,12 +31,13 @@ struct ContentView: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(20)
-                .padding(.horizontal)
+                .padding()
             }
         }
         .sheet(isPresented: self.$viewModel.isShowPhotoLibrary) {
             ImagePicker(selectedImage: self.$viewModel.image, sourceType: .photoLibrary)
         }
+        .statusBar(hidden: self.viewModel.image == nil ? false : true)
     }
 }
 

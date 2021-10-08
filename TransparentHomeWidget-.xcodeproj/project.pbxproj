@@ -58,9 +58,9 @@
 				0E9F7CC7270FECD600060B34 /* TransparentHomeWidget_App.swift */,
 				0E9F7CC9270FECD600060B34 /* ContentView.swift */,
 				0E9F7CD5270FECED00060B34 /* ContentViewModel.swift */,
+				0E9F7CD9270FF70D00060B34 /* ImagePicker.swift */,
 				0E9F7CCB270FECD800060B34 /* Assets.xcassets */,
 				0E9F7CCD270FECD800060B34 /* Preview Content */,
-				0E9F7CD9270FF70D00060B34 /* ImagePicker.swift */,
 			);
 			path = "TransparentHomeWidget-";
 			sourceTree = "<group>";

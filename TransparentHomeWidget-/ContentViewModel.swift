@@ -12,7 +12,7 @@ import SwiftUI
 class ContentViewModel: ObservableObject {
     
     @Published var isShowPhotoLibrary = false
-    @Published var image = UIImage()
+    @Published var image: UIImage?
     
     init(){
         
