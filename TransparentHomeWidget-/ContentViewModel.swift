@@ -14,7 +14,7 @@ class ContentViewModel: ObservableObject {
     @Published var isShowPhotoLibrary = false
     
     // Save the image to AppStorage (UserDefaults), so that it can be used in widgets
-    @AppStorage("bg") var bg: Data?
+    @AppStorage("bg",  store: UserDefaults(suiteName: "group.com.keep-learning.TransparentHomeWidget")) var bg: Data?
 
     init(){}
     
