@@ -12,6 +12,7 @@
 		0E9F7CCC270FECD800060B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9F7CCB270FECD800060B34 /* Assets.xcassets */; };
 		0E9F7CCF270FECD800060B34 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9F7CCE270FECD800060B34 /* Preview Assets.xcassets */; };
 		0E9F7CD6270FECED00060B34 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9F7CD5270FECED00060B34 /* ContentViewModel.swift */; };
+		0E9F7CDA270FF70D00060B34 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9F7CD9270FF70D00060B34 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		0E9F7CCB270FECD800060B34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E9F7CCE270FECD800060B34 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0E9F7CD5270FECED00060B34 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		0E9F7CD9270FF70D00060B34 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				0E9F7CD5270FECED00060B34 /* ContentViewModel.swift */,
 				0E9F7CCB270FECD800060B34 /* Assets.xcassets */,
 				0E9F7CCD270FECD800060B34 /* Preview Content */,
+				0E9F7CD9270FF70D00060B34 /* ImagePicker.swift */,
 			);
 			path = "TransparentHomeWidget-";
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E9F7CCA270FECD600060B34 /* ContentView.swift in Sources */,
+				0E9F7CDA270FF70D00060B34 /* ImagePicker.swift in Sources */,
 				0E9F7CC8270FECD600060B34 /* TransparentHomeWidget_App.swift in Sources */,
 				0E9F7CD6270FECED00060B34 /* ContentViewModel.swift in Sources */,
 			);

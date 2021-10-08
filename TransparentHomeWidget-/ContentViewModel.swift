@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
 class ContentViewModel: ObservableObject {
+    
+    @Published var isShowPhotoLibrary = false
+    @Published var image = UIImage()
+    
     init(){
         
     }
