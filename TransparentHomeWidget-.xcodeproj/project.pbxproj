@@ -12,6 +12,10 @@
 		0E0031352710534F003C7291 /* HomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0031342710534F003C7291 /* HomeWidget.swift */; };
 		0E00313727105350003C7291 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E00313627105350003C7291 /* Assets.xcassets */; };
 		0E00313B27105350003C7291 /* HomeWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0E00312D2710534F003C7291 /* HomeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0E00FCD027117B5400E4A189 /* ImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E00FCCF27117B5400E4A189 /* ImageEx.swift */; };
+		0E00FCD32711867100E4A189 /* ImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E00FCCF27117B5400E4A189 /* ImageEx.swift */; };
+		0E00FCDA2711D21C00E4A189 /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E00FCD92711D21C00E4A189 /* DeviceKit */; };
+		0E00FCDD2711D22900E4A189 /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E00FCDC2711D22900E4A189 /* DeviceKit */; };
 		0E9F7CC8270FECD600060B34 /* TransparentHomeWidget_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9F7CC7270FECD600060B34 /* TransparentHomeWidget_App.swift */; };
 		0E9F7CCA270FECD600060B34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9F7CC9270FECD600060B34 /* ContentView.swift */; };
 		0E9F7CCC270FECD800060B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9F7CCB270FECD800060B34 /* Assets.xcassets */; };
@@ -53,6 +57,8 @@
 		0E00313827105350003C7291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E0031402710536F003C7291 /* TransparentHomeWidget-.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TransparentHomeWidget-.entitlements"; sourceTree = "<group>"; };
 		0E003141271053A2003C7291 /* HomeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HomeWidgetExtension.entitlements; sourceTree = "<group>"; };
+		0E00FCCF27117B5400E4A189 /* ImageEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEx.swift; sourceTree = "<group>"; };
+		0E00FCDB2711D21F00E4A189 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0E9F7CC4270FECD600060B34 /* TransparentHomeWidget-.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TransparentHomeWidget-.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9F7CC7270FECD600060B34 /* TransparentHomeWidget_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentHomeWidget_App.swift; sourceTree = "<group>"; };
 		0E9F7CC9270FECD600060B34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 			files = (
 				0E0031322710534F003C7291 /* SwiftUI.framework in Frameworks */,
 				0E0031302710534F003C7291 /* WidgetKit.framework in Frameworks */,
+				0E00FCDA2711D21C00E4A189 /* DeviceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E00FCDD2711D22900E4A189 /* DeviceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +132,7 @@
 		0E9F7CC6270FECD600060B34 /* TransparentHomeWidget- */ = {
 			isa = PBXGroup;
 			children = (
+				0E00FCDB2711D21F00E4A189 /* Info.plist */,
 				0E0031402710536F003C7291 /* TransparentHomeWidget-.entitlements */,
 				0E9F7CC7270FECD600060B34 /* TransparentHomeWidget_App.swift */,
 				0E9F7CC9270FECD600060B34 /* ContentView.swift */,
@@ -131,6 +140,7 @@
 				0E9F7CD9270FF70D00060B34 /* ImagePicker.swift */,
 				0E9F7CCB270FECD800060B34 /* Assets.xcassets */,
 				0E9F7CCD270FECD800060B34 /* Preview Content */,
+				0E00FCCF27117B5400E4A189 /* ImageEx.swift */,
 			);
 			path = "TransparentHomeWidget-";
 			sourceTree = "<group>";
@@ -159,6 +169,9 @@
 			dependencies = (
 			);
 			name = HomeWidgetExtension;
+			packageProductDependencies = (
+				0E00FCD92711D21C00E4A189 /* DeviceKit */,
+			);
 			productName = HomeWidgetExtension;
 			productReference = 0E00312D2710534F003C7291 /* HomeWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -178,6 +191,9 @@
 				0E00313A27105350003C7291 /* PBXTargetDependency */,
 			);
 			name = "TransparentHomeWidget-";
+			packageProductDependencies = (
+				0E00FCDC2711D22900E4A189 /* DeviceKit */,
+			);
 			productName = "TransparentHomeWidget-";
 			productReference = 0E9F7CC4270FECD600060B34 /* TransparentHomeWidget-.app */;
 			productType = "com.apple.product-type.application";
@@ -209,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 0E9F7CBB270FECD600060B34;
+			packageReferences = (
+				0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */,
+			);
 			productRefGroup = 0E9F7CC5270FECD600060B34 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -245,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E0031352710534F003C7291 /* HomeWidget.swift in Sources */,
+				0E00FCD32711867100E4A189 /* ImageEx.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E9F7CCA270FECD600060B34 /* ContentView.swift in Sources */,
+				0E00FCD027117B5400E4A189 /* ImageEx.swift in Sources */,
 				0E9F7CDA270FF70D00060B34 /* ImagePicker.swift in Sources */,
 				0E9F7CC8270FECD600060B34 /* TransparentHomeWidget_App.swift in Sources */,
 				0E9F7CD6270FECED00060B34 /* ContentViewModel.swift in Sources */,
@@ -455,6 +476,7 @@
 				DEVELOPMENT_TEAM = AL869FRMV6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TransparentHomeWidget-/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -487,6 +509,7 @@
 				DEVELOPMENT_TEAM = AL869FRMV6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TransparentHomeWidget-/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -537,6 +560,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devicekit/DeviceKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E00FCD92711D21C00E4A189 /* DeviceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */;
+			productName = DeviceKit;
+		};
+		0E00FCDC2711D22900E4A189 /* DeviceKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */;
+			productName = DeviceKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0E9F7CBC270FECD600060B34 /* Project object */;
 }

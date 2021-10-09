@@ -10,6 +10,7 @@ import SwiftUI
 
 private let widgetGroupId = "group.com.keep-learning.TransparentHomeWidget"
 private let userDefaultsSharedBg = "bg"
+private let userDefaultsSharedSafeAreaInsetTop = "safeAreaInsetTop"
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -27,11 +28,21 @@ struct Provider: TimelineProvider {
         var entries: [SimpleEntry] = []
         
         if let userDefaults = UserDefaults(suiteName: widgetGroupId){
-            
             let bg = userDefaults.data(forKey: userDefaultsSharedBg)
-            let image = (bg == nil ? UIImage() : UIImage(data: bg!))
+            let userDefaultsSharedSafeAreaInsetTop = userDefaults.double(forKey: userDefaultsSharedSafeAreaInsetTop) 
+            
+            var image: UIImage = UIImage()
+            if ((bg) != nil){
+//                let window = UIApplication.shared.windows.first
+//                let safeAreaPadding = window?.safeAreaInsets.top
+  
+                image = UIImage(data: bg!)!.cropToWidgetSize(safeAreaInsetTop: userDefaultsSharedSafeAreaInsetTop, width: context.displaySize.width, height: context.displaySize.height)
+
+            }
+            
+            
             entries.append(
-                SimpleEntry(date: Date(), image: image!, displaySize: context.displaySize)
+                SimpleEntry(date: Date(), image: image, displaySize: CGSize(width: context.displaySize.width, height: context.displaySize.height))
             )
         }
         
@@ -52,8 +63,13 @@ struct HomeWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        Text(entry.date, style: .time)
-            .background(Image(uiImage: entry.image))
+        ZStack {
+            Image(uiImage: entry.image)
+                .resizable()
+                .scaledToFill()
+            Text(entry.displaySize.debugDescription)
+                .foregroundColor(Color.orange)
+        }
     }
 }
 
@@ -72,7 +88,10 @@ struct HomeWidget: Widget {
 
 struct HomeWidget_Previews: PreviewProvider {
     static var previews: some View {
+        
         HomeWidgetEntryView(entry: SimpleEntry(date: Date(), image: UIImage(), displaySize: CGSize(width: 170, height: 170)))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
+
+
