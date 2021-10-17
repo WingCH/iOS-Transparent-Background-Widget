@@ -39,7 +39,7 @@ struct Provider: TimelineProvider {
                 image = UIImage(data: bg!)!.cropToWidgetSize(
                     safeAreaInsetTop: userDefaultsSharedSafeAreaInsetTop,
                     widgetSize: context.displaySize,
-                    widgetPosition: WidgetPosition.rightTop
+                    widgetPosition: WidgetPosition.leftMiddle
                 )
 
             }
