@@ -89,7 +89,7 @@ extension UIImage
 }
 
 // Only Tested in iPhone
-enum WidgetPosition {
+enum WidgetPosition: String, CaseIterable {
     
     case top
     case leftTop
