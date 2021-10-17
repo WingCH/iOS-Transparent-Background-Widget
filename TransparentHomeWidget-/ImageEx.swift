@@ -63,6 +63,8 @@ extension UIImage
             startPoint.y += (widgetSize.height + horizontalMargin) * 2;
             break
         case .rightBottom:
+            startPoint.x += (widgetSize.width + verticalMargin);
+            startPoint.y += (widgetSize.height + horizontalMargin) * 2;
             break
         }
         
