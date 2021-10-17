@@ -34,7 +34,7 @@ extension UIImage
         let topMargin = 30.0;
         let leftMargin = 25.0;
         let verticalMargin: CGFloat = 23;
-        let horizontalMargin: CGFloat = 38;
+        let horizontalMargin: CGFloat = 38.2;
         
         var startPoint: CGPoint = CGPoint(x: leftMargin, y: (topMargin + statusBarHeight));
         
@@ -59,6 +59,8 @@ extension UIImage
         case .bottom:
             break
         case .leftBottom:
+            startPoint.x += 0;
+            startPoint.y += (widgetSize.height + horizontalMargin) * 2;
             break
         case .rightBottom:
             break
