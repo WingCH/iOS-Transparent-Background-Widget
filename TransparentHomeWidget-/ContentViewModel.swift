@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import WidgetKit
+import Combine
 
 class ContentViewModel: ObservableObject {
     
@@ -17,16 +18,14 @@ class ContentViewModel: ObservableObject {
         WidgetFamily.systemLarge,
     ]
     
-    var widgetPositions: [WidgetPosition] = []
+    @Published var widgetPositions: [WidgetPosition] = []
     
-    @Published var selectedWidgetFamily = WidgetFamily.systemSmall {
-        didSet {
-            widgetPositions = WidgetPosition.availablePositions(selectedWidgetFamily)
-        }
-    }
+    @Published var selectedWidgetFamily = WidgetFamily.systemSmall
     @Published var selectedWidgetPosition = WidgetPosition.leftTop
     
     @Published var isShowPhotoLibrary = false
+    
+    private var cancellable: AnyCancellable?
     
     // Save the image to AppStorage (UserDefaults), so that it can be used in widgets
     @AppStorage("bg",  store: UserDefaults(suiteName: "group.com.keep-learning.TransparentHomeWidget")) var bg: Data?
@@ -34,8 +33,10 @@ class ContentViewModel: ObservableObject {
     @AppStorage("safeAreaInsetTop",  store: UserDefaults(suiteName: "group.com.keep-learning.TransparentHomeWidget")) var safeAreaInsetTop: Double?
     
     init(){
-        
-        widgetPositions = WidgetPosition.availablePositions(selectedWidgetFamily)
+        cancellable =  $selectedWidgetFamily.sink { widgetFamilys in
+            self.widgetPositions = WidgetPosition.availablePositions(widgetFamilys)
+            print(self.widgetPositions)
+        }
         
         // top safe area
         let window = UIApplication.shared.windows.first

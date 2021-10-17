@@ -34,7 +34,6 @@ struct ContentView: View {
                     ForEach(self.viewModel.widgetPositions, id: \.self) { (widgetPosition) in
                         Text(String(describing: widgetPosition))
                        }
-                    
                 }
                 .pickerStyle(WheelPickerStyle())
                 .frame(width: 300, height: 300)
