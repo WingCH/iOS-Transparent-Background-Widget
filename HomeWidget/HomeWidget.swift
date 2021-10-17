@@ -36,7 +36,11 @@ struct Provider: TimelineProvider {
 //                let window = UIApplication.shared.windows.first
 //                let safeAreaPadding = window?.safeAreaInsets.top
   
-                image = UIImage(data: bg!)!.cropToWidgetSize(safeAreaInsetTop: userDefaultsSharedSafeAreaInsetTop, width: context.displaySize.width, height: context.displaySize.height)
+                image = UIImage(data: bg!)!.cropToWidgetSize(
+                    safeAreaInsetTop: userDefaultsSharedSafeAreaInsetTop,
+                    widgetSize: context.displaySize,
+                    widgetPosition: WidgetPosition.rightTop
+                )
 
             }
             
