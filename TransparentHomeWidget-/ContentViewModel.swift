@@ -17,6 +17,7 @@ class ContentViewModel: ObservableObject {
     @Published var selectedWidgetPosition: WidgetPosition {
         didSet {
             userDefaults?.set(selectedWidgetPosition.rawValue, forKey: userDefaultsWidgetPosition)
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     
@@ -78,7 +79,7 @@ class ContentViewModel: ObservableObject {
     }
     
     
-    func onSelecedtImage(image: UIImage){
+    func onSelecedtImage(image: UIImage) {
         if let data = image.jpegData(compressionQuality: 0.8) {
             backgroundImage = data
         }
