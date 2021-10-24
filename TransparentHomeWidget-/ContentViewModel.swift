@@ -12,25 +12,25 @@ import Combine
 
 class ContentViewModel: ObservableObject {
     
-    let userDefaults =  UserDefaults(suiteName: "group.com.keep-learning.TransparentHomeWidget");
+    let userDefaults =  UserDefaults(suiteName: groupId);
     
     @Published var selectedWidgetPosition: WidgetPosition {
         didSet {
-            userDefaults?.set(selectedWidgetPosition.rawValue, forKey: "widgetPosition")
+            userDefaults?.set(selectedWidgetPosition.rawValue, forKey: userDefaultsWidgetPosition)
         }
     }
     
     // Save the image to AppStorage (UserDefaults), so that it can be used in widgets
     @Published var backgroundImage: Data? {
         didSet {
-            userDefaults?.set(backgroundImage, forKey: "backgroundImage")
+            userDefaults?.set(backgroundImage, forKey: userDefaultsSharedBackgroundImage)
         }
     }
     
     // Since extention cannot use `UIApplication.shared.windows` get safe area size, so save it for widgets
     @Published var safeAreaInsetTop: Double? {
         didSet {
-            userDefaults?.set(safeAreaInsetTop, forKey: "safeAreaInsetTop")
+            userDefaults?.set(safeAreaInsetTop, forKey: userDefaultsSharedSafeAreaInsetTop)
         }
     }
     
@@ -51,15 +51,15 @@ class ContentViewModel: ObservableObject {
     
     init(){
         
-        if let selectedWidgetPositionRawValue = userDefaults?.object(forKey: "widgetPosition") as? String {
+        if let selectedWidgetPositionRawValue = userDefaults?.object(forKey: userDefaultsWidgetPosition) as? String {
             selectedWidgetPosition = WidgetPosition(rawValue: selectedWidgetPositionRawValue) ?? WidgetPosition.leftTop
         }else{
             selectedWidgetPosition = WidgetPosition.leftTop
         }
         
-         backgroundImage = userDefaults?.data(forKey: "backgroundImage")
+         backgroundImage = userDefaults?.data(forKey: userDefaultsSharedBackgroundImage)
         
-        // update available positions
+        // update available position list when widget family change
         cancellable =  $selectedWidgetFamily.sink { widgetFamilys in
             self.widgetPositions = WidgetPosition.availablePositions(widgetFamilys)
         }
@@ -79,7 +79,7 @@ class ContentViewModel: ObservableObject {
     
     
     func onSelecedtImage(image: UIImage){
-        if let data = image.pngData() {
+        if let data = image.jpegData(compressionQuality: 0.8) {
             backgroundImage = data
         }
     }

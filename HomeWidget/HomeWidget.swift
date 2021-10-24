@@ -8,10 +8,6 @@
 import WidgetKit
 import SwiftUI
 
-private let widgetGroupId = "group.com.keep-learning.TransparentHomeWidget"
-private let userDefaultsSharedBg = "bg"
-private let userDefaultsSharedSafeAreaInsetTop = "safeAreaInsetTop"
-
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         
@@ -27,21 +23,22 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
         
-        if let userDefaults = UserDefaults(suiteName: widgetGroupId){
-            let bg = userDefaults.data(forKey: userDefaultsSharedBg)
-            let userDefaultsSharedSafeAreaInsetTop = userDefaults.double(forKey: userDefaultsSharedSafeAreaInsetTop) 
+        if let userDefaults = UserDefaults(suiteName: groupId) {
+            
+            let safeAreaInsetTop = userDefaults.double(forKey: userDefaultsSharedSafeAreaInsetTop)
+            
+            var widgetPosition : WidgetPosition = WidgetPosition.leftTop
+            if let widgetPositionRawValue = userDefaults.object(forKey: "widgetPosition") as? String{
+                widgetPosition = WidgetPosition(rawValue: widgetPositionRawValue)!
+            }
             
             var image: UIImage = UIImage()
-            if ((bg) != nil){
-//                let window = UIApplication.shared.windows.first
-//                let safeAreaPadding = window?.safeAreaInsets.top
-  
-                image = UIImage(data: bg!)!.cropToWidgetSize(
-                    safeAreaInsetTop: userDefaultsSharedSafeAreaInsetTop,
+            if let backgroundImage = userDefaults.data(forKey: userDefaultsSharedBackgroundImage) {
+                image = UIImage(data:backgroundImage)!.cropToWidgetSize(
+                    safeAreaInsetTop: safeAreaInsetTop,
                     widgetSize: context.displaySize,
-                    widgetPosition: WidgetPosition.rightBottom
+                    widgetPosition: widgetPosition
                 )
-
             }
             
             

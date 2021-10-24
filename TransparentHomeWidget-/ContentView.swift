@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel: ContentViewModel = ContentViewModel()
-
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             Image(uiImage: (self.viewModel.backgroundImage == nil ? UIImage() : UIImage(data: self.viewModel.backgroundImage!))!)
@@ -21,25 +21,32 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                HStack {
-                    Picker("選擇", selection: self.$viewModel.selectedWidgetFamily) {
-                        ForEach(self.viewModel.widgetFamilys, id: \.self) { (index) in
-                            Text(self.viewModel.widgetFamilys[index.rawValue].description)
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 100, height: 200)
-                    
-                    Picker("選擇", selection: self.$viewModel.selectedWidgetPosition) {
-                        ForEach(self.viewModel.widgetPositions, id: \.self) { widgetPosition in
-                            Text(String(describing: widgetPosition))
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 200, height: 100)
-                }
                 
-//                Text("\(self.$viewModel.selectedWidgetPosition)")
+                GeometryReader { geometry in
+                    HStack {
+                        Picker("選擇", selection: self.$viewModel.selectedWidgetFamily) {
+                            ForEach(self.viewModel.widgetFamilys, id: \.self) { (index) in
+                                Text(self.viewModel.widgetFamilys[index.rawValue].description)
+                            }
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                        .frame(width: geometry.size.width / 2, height: 100)
+                        .clipped()
+                        
+                        Picker("選擇", selection: self.$viewModel.selectedWidgetPosition) {
+                            ForEach(self.viewModel.widgetPositions, id: \.self) { widgetPosition in
+                                Text(String(describing: widgetPosition))
+                            }
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                        .frame(width: geometry.size.width / 2, height: 100)
+                        .clipped()
+                    }
+                    
+                }
+                .frame(height: 100)
+                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
+                
                 
                 Button(action: self.viewModel.onClickSelectImage) {
                     HStack {
