@@ -12,7 +12,29 @@ import Combine
 
 class ContentViewModel: ObservableObject {
     
-    var widgetFamilys: [WidgetFamily] = [
+    let userDefaults =  UserDefaults(suiteName: "group.com.keep-learning.TransparentHomeWidget");
+    
+    @Published var selectedWidgetPosition: WidgetPosition {
+        didSet {
+            userDefaults?.set(selectedWidgetPosition.rawValue, forKey: "widgetPosition")
+        }
+    }
+    
+    // Save the image to AppStorage (UserDefaults), so that it can be used in widgets
+    @Published var backgroundImage: Data? {
+        didSet {
+            userDefaults?.set(backgroundImage, forKey: "backgroundImage")
+        }
+    }
+    
+    // Since extention cannot use `UIApplication.shared.windows` get safe area size, so save it for widgets
+    @Published var safeAreaInsetTop: Double? {
+        didSet {
+            userDefaults?.set(safeAreaInsetTop, forKey: "safeAreaInsetTop")
+        }
+    }
+    
+    let widgetFamilys: [WidgetFamily] = [
         WidgetFamily.systemSmall,
         WidgetFamily.systemMedium,
         WidgetFamily.systemLarge,
@@ -21,21 +43,25 @@ class ContentViewModel: ObservableObject {
     @Published var widgetPositions: [WidgetPosition] = []
     
     @Published var selectedWidgetFamily = WidgetFamily.systemSmall
-    @Published var selectedWidgetPosition = WidgetPosition.leftTop
     
     @Published var isShowPhotoLibrary = false
     
     private var cancellable: AnyCancellable?
     
-    // Save the image to AppStorage (UserDefaults), so that it can be used in widgets
-    @AppStorage("bg",  store: UserDefaults(suiteName: "group.com.keep-learning.TransparentHomeWidget")) var bg: Data?
-    // Since extention cannot use `UIApplication.shared.windows` get safe area size, so save it for widgets
-    @AppStorage("safeAreaInsetTop",  store: UserDefaults(suiteName: "group.com.keep-learning.TransparentHomeWidget")) var safeAreaInsetTop: Double?
     
     init(){
+        
+        if let selectedWidgetPositionRawValue = userDefaults?.object(forKey: "widgetPosition") as? String {
+            selectedWidgetPosition = WidgetPosition(rawValue: selectedWidgetPositionRawValue) ?? WidgetPosition.leftTop
+        }else{
+            selectedWidgetPosition = WidgetPosition.leftTop
+        }
+        
+         backgroundImage = userDefaults?.data(forKey: "backgroundImage")
+        
+        // update available positions
         cancellable =  $selectedWidgetFamily.sink { widgetFamilys in
             self.widgetPositions = WidgetPosition.availablePositions(widgetFamilys)
-            print(self.widgetPositions)
         }
         
         // top safe area
@@ -44,14 +70,17 @@ class ContentViewModel: ObservableObject {
             safeAreaInsetTop = Double(safeAreaPadding)
         }
         
-        //        let originalImage = UIImage(named: "screenshot")
-        //        let cropedImage = originalImage?.cropToWidgetSize(safeAreaInsetTop: safeAreaPadding!, width: 158, height: 158)
-        //        print(cropedImage)
+        
     }
     
-    func onSelectImage(image: UIImage){
+    func onClickSelectImage(){
+        self.isShowPhotoLibrary = true
+    }
+    
+    
+    func onSelecedtImage(image: UIImage){
         if let data = image.pngData() {
-            bg = data
+            backgroundImage = data
         }
     }
 }

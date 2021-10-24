@@ -89,7 +89,7 @@ extension UIImage
 }
 
 // Only Tested in iPhone
-enum WidgetPosition: String, CaseIterable {
+enum WidgetPosition: String, CaseIterable, Codable, Identifiable {
     
     case top
     case leftTop
@@ -117,6 +117,8 @@ enum WidgetPosition: String, CaseIterable {
             fatalError("Not yet implemented")
         }
     }
+    
+    var id: WidgetPosition { self }
 }
 
 

@@ -11,37 +11,37 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel: ContentViewModel = ContentViewModel()
-    
+
     var body: some View {
         ZStack(alignment: .bottom) {
-            Image(uiImage: (self.viewModel.bg == nil ? UIImage() : UIImage(data: self.viewModel.bg!))!)
+            Image(uiImage: (self.viewModel.backgroundImage == nil ? UIImage() : UIImage(data: self.viewModel.backgroundImage!))!)
                 .resizable()
                 .scaledToFill()
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
-                Picker("選擇", selection: self.$viewModel.selectedWidgetFamily) {
-                    ForEach(self.viewModel.widgetFamilys, id: \.self) { (index) in
-                        Text(self.viewModel.widgetFamilys[index.rawValue].description)
-                       }
+                HStack {
+                    Picker("選擇", selection: self.$viewModel.selectedWidgetFamily) {
+                        ForEach(self.viewModel.widgetFamilys, id: \.self) { (index) in
+                            Text(self.viewModel.widgetFamilys[index.rawValue].description)
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .frame(width: 100, height: 200)
+                    
+                    Picker("選擇", selection: self.$viewModel.selectedWidgetPosition) {
+                        ForEach(self.viewModel.widgetPositions, id: \.self) { widgetPosition in
+                            Text(String(describing: widgetPosition))
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .frame(width: 200, height: 100)
                 }
-                .pickerStyle(WheelPickerStyle())
-                .frame(width: 300, height: 300)
-
-                Picker("選擇", selection: self.$viewModel.selectedWidgetPosition) {
-                    ForEach(self.viewModel.widgetPositions, id: \.self) { (widgetPosition) in
-                        Text(String(describing: widgetPosition))
-                       }
-                }
-                .pickerStyle(WheelPickerStyle())
-                .frame(width: 300, height: 300)
-
                 
-                Button(action: {
-                    self.viewModel.isShowPhotoLibrary = true
-                }) {
+//                Text("\(self.$viewModel.selectedWidgetPosition)")
+                
+                Button(action: self.viewModel.onClickSelectImage) {
                     HStack {
                         Image(systemName: "photo")
                             .font(.system(size: 20))
@@ -55,13 +55,11 @@ struct ContentView: View {
                     .padding()
                 }
             }
-            
-            
         }
         .sheet(isPresented: self.$viewModel.isShowPhotoLibrary) {
-            ImagePicker(selectedImage: viewModel.onSelectImage, sourceType: .photoLibrary)
+            ImagePicker(selectedImage: viewModel.onSelecedtImage, sourceType: .photoLibrary)
         }
-        .statusBar(hidden: self.viewModel.bg == nil ? false : true)
+        .statusBar(hidden: self.viewModel.backgroundImage == nil ? false : true)
     }
 }
 
