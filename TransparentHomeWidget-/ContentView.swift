@@ -22,30 +22,30 @@ struct ContentView: View {
             
             VStack {
                 
-                GeometryReader { geometry in
-                    HStack {
-                        Picker("選擇", selection: self.$viewModel.selectedWidgetFamily) {
-                            ForEach(self.viewModel.widgetFamilys, id: \.self) { (index) in
-                                Text(self.viewModel.widgetFamilys[index.rawValue].description)
-                            }
-                        }
-                        .pickerStyle(WheelPickerStyle())
-                        .frame(width: geometry.size.width / 2, height: 100)
-                        .clipped()
-                        
-                        Picker("選擇", selection: self.$viewModel.selectedWidgetPosition) {
-                            ForEach(self.viewModel.widgetPositions, id: \.self) { widgetPosition in
-                                Text(String(describing: widgetPosition))
-                            }
-                        }
-                        .pickerStyle(WheelPickerStyle())
-                        .frame(width: geometry.size.width / 2, height: 100)
-                        .clipped()
-                    }
-                    
-                }
-                .frame(height: 100)
-                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
+//                GeometryReader { geometry in
+//                    HStack {
+//                        Picker("選擇", selection: self.$viewModel.selectedWidgetFamily) {
+//                            ForEach(self.viewModel.widgetFamilys, id: \.self) { (index) in
+//                                Text(self.viewModel.widgetFamilys[index.rawValue].description)
+//                            }
+//                        }
+//                        .pickerStyle(WheelPickerStyle())
+//                        .frame(width: geometry.size.width / 2, height: 100)
+//                        .clipped()
+//                        
+//                        Picker("選擇", selection: self.$viewModel.selectedWidgetPosition) {
+//                            ForEach(self.viewModel.widgetPositions, id: \.self) { widgetPosition in
+//                                Text(String(describing: widgetPosition))
+//                            }
+//                        }
+//                        .pickerStyle(WheelPickerStyle())
+//                        .frame(width: geometry.size.width / 2, height: 100)
+//                        .clipped()
+//                    }
+//
+//                }
+//                .frame(height: 100)
+//                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
                 
                 
                 Button(action: self.viewModel.onClickSelectImage) {

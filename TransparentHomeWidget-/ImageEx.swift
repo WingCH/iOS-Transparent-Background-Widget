@@ -46,9 +46,7 @@ extension UIImage
             startPoint.x += 0;
         case .rightTop:
             startPoint.x += (widgetSize.width + verticalMargin);
-        case .middle:
-            break
-        case .leftMiddle:
+        case .middle, .leftMiddle:
             startPoint.x += 0;
             startPoint.y += (widgetSize.height + horizontalMargin);
             break
@@ -56,9 +54,7 @@ extension UIImage
             startPoint.x += (widgetSize.width + verticalMargin);
             startPoint.y += (widgetSize.height + horizontalMargin);
             break
-        case .bottom:
-            break
-        case .leftBottom:
+        case .bottom, .leftBottom:
             startPoint.x += 0;
             startPoint.y += (widgetSize.height + horizontalMargin) * 2;
             break

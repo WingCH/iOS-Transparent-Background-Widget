@@ -11,11 +11,11 @@ import SwiftUI
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         
-        SimpleEntry(date: Date(), image: UIImage(), displaySize: context.displaySize)
+        SimpleEntry(date: Date(), image: UIImage())
     }
     
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), image: UIImage(), displaySize: context.displaySize)
+        let entry = SimpleEntry(date: Date(), image: UIImage())
         
         completion(entry)
     }
@@ -43,7 +43,7 @@ struct Provider: TimelineProvider {
             
             
             entries.append(
-                SimpleEntry(date: Date(), image: image, displaySize: CGSize(width: context.displaySize.width, height: context.displaySize.height))
+                SimpleEntry(date: Date(), image: image)
             )
         }
         
@@ -57,7 +57,6 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let image: UIImage
-    let displaySize: CGSize
 }
 
 struct HomeWidgetEntryView : View {
@@ -68,8 +67,10 @@ struct HomeWidgetEntryView : View {
             Image(uiImage: entry.image)
                 .resizable()
                 .scaledToFill()
-            Text(entry.displaySize.debugDescription)
-                .foregroundColor(Color.orange)
+            Image("widgetImage")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding()
         }
     }
 }
@@ -90,7 +91,7 @@ struct HomeWidget: Widget {
 struct HomeWidget_Previews: PreviewProvider {
     static var previews: some View {
         
-        HomeWidgetEntryView(entry: SimpleEntry(date: Date(), image: UIImage(), displaySize: CGSize(width: 170, height: 170)))
+        HomeWidgetEntryView(entry: SimpleEntry(date: Date(), image: UIImage()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -14,8 +14,6 @@
 		0E00313B27105350003C7291 /* HomeWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0E00312D2710534F003C7291 /* HomeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0E00FCD027117B5400E4A189 /* ImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E00FCCF27117B5400E4A189 /* ImageEx.swift */; };
 		0E00FCD32711867100E4A189 /* ImageEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E00FCCF27117B5400E4A189 /* ImageEx.swift */; };
-		0E00FCDA2711D21C00E4A189 /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E00FCD92711D21C00E4A189 /* DeviceKit */; };
-		0E00FCDD2711D22900E4A189 /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E00FCDC2711D22900E4A189 /* DeviceKit */; };
 		0E9F7CC8270FECD600060B34 /* TransparentHomeWidget_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9F7CC7270FECD600060B34 /* TransparentHomeWidget_App.swift */; };
 		0E9F7CCA270FECD600060B34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9F7CC9270FECD600060B34 /* ContentView.swift */; };
 		0E9F7CCC270FECD800060B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9F7CCB270FECD800060B34 /* Assets.xcassets */; };
@@ -78,7 +76,6 @@
 			files = (
 				0E0031322710534F003C7291 /* SwiftUI.framework in Frameworks */,
 				0E0031302710534F003C7291 /* WidgetKit.framework in Frameworks */,
-				0E00FCDA2711D21C00E4A189 /* DeviceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E00FCDD2711D22900E4A189 /* DeviceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +170,6 @@
 			);
 			name = HomeWidgetExtension;
 			packageProductDependencies = (
-				0E00FCD92711D21C00E4A189 /* DeviceKit */,
 			);
 			productName = HomeWidgetExtension;
 			productReference = 0E00312D2710534F003C7291 /* HomeWidgetExtension.appex */;
@@ -196,7 +191,6 @@
 			);
 			name = "TransparentHomeWidget-";
 			packageProductDependencies = (
-				0E00FCDC2711D22900E4A189 /* DeviceKit */,
 			);
 			productName = "TransparentHomeWidget-";
 			productReference = 0E9F7CC4270FECD600060B34 /* TransparentHomeWidget-.app */;
@@ -230,7 +224,6 @@
 			);
 			mainGroup = 0E9F7CBB270FECD600060B34;
 			packageReferences = (
-				0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */,
 			);
 			productRefGroup = 0E9F7CC5270FECD600060B34 /* Products */;
 			projectDirPath = "";
@@ -566,30 +559,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devicekit/DeviceKit.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0E00FCD92711D21C00E4A189 /* DeviceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */;
-			productName = DeviceKit;
-		};
-		0E00FCDC2711D22900E4A189 /* DeviceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0E00FCD42711D1EF00E4A189 /* XCRemoteSwiftPackageReference "DeviceKit" */;
-			productName = DeviceKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0E9F7CBC270FECD600060B34 /* Project object */;
 }

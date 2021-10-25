@@ -52,24 +52,27 @@ class ContentViewModel: ObservableObject {
     
     init(){
         
-        if let selectedWidgetPositionRawValue = userDefaults?.object(forKey: userDefaultsWidgetPosition) as? String {
-            selectedWidgetPosition = WidgetPosition(rawValue: selectedWidgetPositionRawValue) ?? WidgetPosition.leftTop
-        }else{
-            selectedWidgetPosition = WidgetPosition.leftTop
-        }
+//        if let selectedWidgetPositionRawValue = userDefaults?.object(forKey: userDefaultsWidgetPosition) as? String {
+//            selectedWidgetPosition = WidgetPosition(rawValue: selectedWidgetPositionRawValue) ?? WidgetPosition.leftTop
+//        }else{
+//            selectedWidgetPosition = WidgetPosition.leftTop
+//        }
         
          backgroundImage = userDefaults?.data(forKey: userDefaultsSharedBackgroundImage)
         
         // update available position list when widget family change
-        cancellable =  $selectedWidgetFamily.sink { widgetFamilys in
-            self.widgetPositions = WidgetPosition.availablePositions(widgetFamilys)
-        }
+//        cancellable =  $selectedWidgetFamily.sink { widgetFamilys in
+//            self.widgetPositions = WidgetPosition.availablePositions(widgetFamilys)
+//        }
         
         // top safe area
         let window = UIApplication.shared.windows.first
         if let safeAreaPadding = window?.safeAreaInsets.top {
             safeAreaInsetTop = Double(safeAreaPadding)
         }
+        
+        selectedWidgetPosition = WidgetPosition.leftTop
+        
         
         
     }
